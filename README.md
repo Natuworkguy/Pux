@@ -22,30 +22,8 @@ Pux exposes simple graphics, rendering, and window management functions from Pyg
 
 # Example
 
-```rux
-func Main() -> int {
-    Pux::pg_init();
+[This section has moved](https://github.com/Natuworkguy/Pux-module/tree/main#example)
 
-    while Pux::pg_running() == 1 {
-        Pux::pg_clear();
-
-        Pux::pg_draw_rect(
-            100,
-            100,
-            200,
-            150
-        );
-
-        Pux::pg_present();
-    }
-
-    Pux::pg_quit();
-
-    return 0;
-}
-```
-
----
 
 # How It Works
 
