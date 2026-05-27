@@ -1,6 +1,6 @@
 # Pux
 
-Lightweight Pygame bindings for Rux through a native DLL bridge.
+Lightweight Pygame bindings for [Rux](https://github.com/rux-lang/Rux) through a native DLL bridge.
 
 Pux exposes simple graphics, rendering, and window management functions from Pygame to Rux, making it possible to prototype games and graphical applications directly in Rux.
 
