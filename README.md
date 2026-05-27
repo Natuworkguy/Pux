@@ -6,6 +6,8 @@ Pux exposes simple graphics, rendering, and window management functions from Pyg
 
 > Experimental project. Mostly built for fun, learning, and engine experimentation.
 
+The actual Rux module is located [here](https://github.com/Natuworkguy/Pux-module).
+
 ---
 
 # Features
