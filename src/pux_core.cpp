@@ -34,6 +34,8 @@ running = True
 for event in pygame.event.get():
     if event.type == pygame.QUIT:
         running = False
+    elif event.type == pygame.KEYDOWN:
+        last_key = pygame.key.name(event.key)
 )");
 
     PyObject* main =
