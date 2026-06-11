@@ -4,22 +4,28 @@
 extern "C" {
 
 __declspec(dllexport)
-void pg_init()
+void pg_init(
+    int window_width,
+    int window_height
+)
 {
+    char buffer[512];
+
     Py_Initialize();
 
     PyRun_SimpleString("print('pygame bindings for Rux (Pux)')\n");
-    PyRun_SimpleString(R"(
+    sprintf_s(buffer, R"(
 import pygame
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((%d, %d))
 
 clock = pygame.time.Clock()
 
 running = True
-)");
+)", window_width, window_height);
+    PyRun_SimpleString(buffer);
 }
 
 __declspec(dllexport)
