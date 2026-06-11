@@ -8,12 +8,20 @@ find_package(Python3 REQUIRED COMPONENTS Development)
 add_library(
     pygame
     SHARED
-    wrapper.cpp
+    src/pux_core.cpp
+    src/pux_graphics.cpp
+)
+
+target_compile_definitions(
+    pygame
+    PRIVATE
+    PUX_EXPORT
 )
 
 target_include_directories(
     pygame
     PRIVATE
+    include
     ${Python3_INCLUDE_DIRS}
 )
 
