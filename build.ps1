@@ -1,2 +1,2 @@
-cmake -B build
-cmake --build build --config Release
+cmake -B build_win
+cmake --build build_win --config Release
