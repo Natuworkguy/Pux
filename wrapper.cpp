@@ -44,7 +44,10 @@ void pg_draw_rect(
     int x,
     int y,
     int w,
-    int h
+    int h,
+    int r,
+    int g,
+    int b
 )
 {
     char buffer[512];
@@ -54,10 +57,13 @@ void pg_draw_rect(
         R"(
 pygame.draw.rect(
     screen,
-    (255, 0, 0),
+    (%d, %d, %d),
     (%d, %d, %d, %d)
 )
 )",
+        r,
+        g,
+        b,
         x,
         y,
         w,
