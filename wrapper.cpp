@@ -29,11 +29,18 @@ running = True
 }
 
 __declspec(dllexport)
-void pg_clear()
+void pg_clear(
+    int r,
+    int g,
+    int b
+)
 {
-    PyRun_SimpleString(R"(
-screen.fill((0, 0, 0))
-)");
+    char buffer[512];
+
+    sprintf_s(buffer, R"(
+screen.fill((%d, %d, %d))
+)", r, g, b);
+    PyRun_SimpleString(buffer);
 }
 
 __declspec(dllexport)
