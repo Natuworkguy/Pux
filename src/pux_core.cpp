@@ -1,9 +1,7 @@
-#include <windows.h>
+#include "pux.h"
 #include <Python.h>
+#include <cstdio>
 
-extern "C" {
-
-__declspec(dllexport)
 void pg_init(
     int window_width,
     int window_height
@@ -14,7 +12,7 @@ void pg_init(
     Py_Initialize();
 
     PyRun_SimpleString("print('pygame bindings for Rux (Pux)')\n");
-    sprintf_s(buffer, R"(
+    snprintf(buffer, sizeof(buffer), R"(
 import pygame
 
 pygame.init()
@@ -28,65 +26,6 @@ running = True
     PyRun_SimpleString(buffer);
 }
 
-__declspec(dllexport)
-void pg_clear(
-    int r,
-    int g,
-    int b
-)
-{
-    char buffer[512];
-
-    sprintf_s(buffer, R"(
-screen.fill((%d, %d, %d))
-)", r, g, b);
-    PyRun_SimpleString(buffer);
-}
-
-__declspec(dllexport)
-void pg_present()
-{
-    PyRun_SimpleString(R"(
-pygame.display.flip()
-clock.tick(60)
-)");
-}
-
-__declspec(dllexport)
-void pg_draw_rect(
-    int x,
-    int y,
-    int w,
-    int h,
-    int r,
-    int g,
-    int b
-)
-{
-    char buffer[512];
-
-    sprintf_s(
-        buffer,
-        R"(
-pygame.draw.rect(
-    screen,
-    (%d, %d, %d),
-    (%d, %d, %d, %d)
-)
-)",
-        r,
-        g,
-        b,
-        x,
-        y,
-        w,
-        h
-    );
-
-    PyRun_SimpleString(buffer);
-}
-
-__declspec(dllexport)
 int pg_running()
 {
     PyRun_SimpleString(R"(
@@ -109,7 +48,6 @@ for event in pygame.event.get():
     return PyObject_IsTrue(value);
 }
 
-__declspec(dllexport)
 void pg_quit()
 {
     PyRun_SimpleString(R"(
@@ -117,6 +55,4 @@ pygame.quit()
 )");
 
     Py_Finalize();
-}
-
 }
